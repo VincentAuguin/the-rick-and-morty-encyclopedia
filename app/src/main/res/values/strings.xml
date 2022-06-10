@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">The Rick And Morty Encyclopedia</string>
+    <string name="explore_text_top_bar">Explore</string>
+    <string name="explore_text_tab_characters">Characters</string>
+    <string name="explore_text_tab_episodes">Episodes</string>
+    <string name="explore_text_tab_locations">Locations</string>
+</resources>
