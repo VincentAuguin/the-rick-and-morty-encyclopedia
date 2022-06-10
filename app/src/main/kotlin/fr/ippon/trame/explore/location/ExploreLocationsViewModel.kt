@@ -8,6 +8,7 @@ import fr.ippon.trame.location.GetAllLocationsUseCase
 import fr.ippon.trame.location.SetLocationFavoriteUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -37,6 +38,8 @@ class ExploreLocationsViewModel @Inject constructor(
         )
 
     fun setFavorite(locationId: String, favorite: Boolean) {
-        setLocationFavorite(locationId, favorite)
+        viewModelScope.launch {
+            setLocationFavorite(locationId, favorite)
+        }
     }
 }

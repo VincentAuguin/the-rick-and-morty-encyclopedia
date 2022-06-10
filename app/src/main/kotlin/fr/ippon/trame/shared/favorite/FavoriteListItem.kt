@@ -29,8 +29,13 @@ fun FavoriteListItem(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
-            content()
-            Spacer(modifier = Modifier.weight(1f))
+            Row(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 12.dp)
+            ) {
+                content()
+            }
             IconButton(onClick = {
                 state.value = !state.value
                 onChange(state.value)

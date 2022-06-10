@@ -3,11 +3,14 @@ package fr.ippon.trame.location
 import javax.inject.Inject
 
 interface SetLocationFavoriteUseCase {
-    operator fun invoke(locationId: String, favorite: Boolean)
+    suspend operator fun invoke(locationId: String, favorite: Boolean)
 }
 
-class DefaultSetLocationFavoriteUseCase @Inject constructor() : SetLocationFavoriteUseCase {
-    override fun invoke(locationId: String, favorite: Boolean) {
-
+class DefaultSetLocationFavoriteUseCase @Inject constructor(private val repository: LocationRepository) :
+    SetLocationFavoriteUseCase {
+    override suspend fun invoke(locationId: String, favorite: Boolean) {
+        repository.getById(locationId)?.let { location ->
+            repository.update(location.copy(isFavorite = favorite))
+        }
     }
 }

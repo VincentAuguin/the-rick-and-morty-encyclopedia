@@ -10,9 +10,18 @@ interface LocationToLocationsListItemDataTransformer {
 class LocationToLocationsListItemDataTransformerImpl @Inject constructor() :
     LocationToLocationsListItemDataTransformer {
     override fun invoke(location: Location): LocationsListItemData {
+        val name = StringBuilder(location.name)
+            .apply {
+                if (location.dimension != "unknown") {
+                    append(" ")
+                    append("(${location.dimension})")
+                }
+            }
+            .toString()
+
         return LocationsListItemData(
             id = location.id,
-            name = location.name,
+            name = name,
             favorite = location.isFavorite
         )
     }

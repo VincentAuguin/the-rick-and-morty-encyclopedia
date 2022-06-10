@@ -8,6 +8,8 @@ import fr.ippon.trame.character.CharacterRepository
 import fr.ippon.trame.character.DefaultCharacterRepository
 import fr.ippon.trame.episode.DefaultEpisodeRepository
 import fr.ippon.trame.episode.EpisodeRepository
+import fr.ippon.trame.location.DefaultLocationRepository
+import fr.ippon.trame.location.LocationRepository
 import javax.inject.Singleton
 
 @Module
@@ -21,4 +23,8 @@ interface RepositoriesModule {
     @Binds
     @Singleton
     fun bindEpisodeRepository(impl: DefaultEpisodeRepository): EpisodeRepository
+
+    @Binds
+    @Singleton
+    fun bindLocationRepository(impl: DefaultLocationRepository): LocationRepository
 }

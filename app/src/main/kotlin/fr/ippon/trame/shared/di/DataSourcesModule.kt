@@ -12,6 +12,10 @@ import fr.ippon.trame.episode.network.RemoteEpisodeDataSource
 import fr.ippon.trame.episode.network.rest.RestRemoteEpisodeDataSource
 import fr.ippon.trame.episode.persistence.LocalEpisodeDataSource
 import fr.ippon.trame.episode.persistence.room.RoomLocalEpisodeDataSource
+import fr.ippon.trame.location.network.RemoteLocationDataSource
+import fr.ippon.trame.location.network.rest.RestRemoteLocationDataSource
+import fr.ippon.trame.location.persistence.LocalLocationDataSource
+import fr.ippon.trame.location.persistence.room.RoomLocalLocationDataSource
 import fr.ippon.trame.shared.RestDataSource
 import fr.ippon.trame.shared.RoomDataSource
 
@@ -34,4 +38,12 @@ interface DataSourcesModule {
     @Binds
     @RoomDataSource
     fun bindLocalEpisodeDataSource(impl: RoomLocalEpisodeDataSource): LocalEpisodeDataSource
+
+    @Binds
+    @RestDataSource
+    fun bindRemoteLocationDataSource(impl: RestRemoteLocationDataSource): RemoteLocationDataSource
+
+    @Binds
+    @RoomDataSource
+    fun bindLocalLocationDataSource(impl: RoomLocalLocationDataSource): LocalLocationDataSource
 }

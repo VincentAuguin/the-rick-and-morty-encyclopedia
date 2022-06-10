@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import fr.ippon.trame.character.persistence.room.CharacterDao
 import fr.ippon.trame.episode.persistence.room.EpisodeDao
+import fr.ippon.trame.location.persistence.room.LocationDao
 import javax.inject.Singleton
 
 @Module
@@ -27,4 +28,7 @@ object RoomModule {
 
     @Provides
     fun provideEpisodeDao(database: AppDatabase): EpisodeDao = database.episodeDao()
+
+    @Provides
+    fun provideLocationDao(database: AppDatabase): LocationDao = database.locationDao()
 }
