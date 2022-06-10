@@ -11,7 +11,7 @@ data class Character(
 
     override fun equals(other: Any?): Boolean {
         return if (other is Character) {
-            id == other.id && isFavorite == other.isFavorite
+            id == other.id
         } else super.equals(other)
     }
 
@@ -19,6 +19,7 @@ data class Character(
         var result = id.hashCode()
         result = 31 * result + name.hashCode()
         result = 31 * result + imageUrl.hashCode()
+        result = 31 * result + isFavorite.hashCode()
         return result
     }
 }

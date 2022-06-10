@@ -40,7 +40,8 @@ abstract class CharacterDao {
 
     @Transaction
     open fun upsert(objList: List<CharacterUpdateEntity>) {
-        val insertResult = insert(objList.map { it.toEntity() })
+        val insertResult =
+            insert(objList.map { it.toEntity() })
         val updateList: MutableList<CharacterUpdateEntity> = ArrayList()
         for (i in insertResult.indices) {
             if (insertResult[i] == -1L) {

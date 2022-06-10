@@ -8,6 +8,7 @@ import fr.ippon.trame.episode.GetAllFavoriteEpisodesUseCase
 import fr.ippon.trame.episode.SetEpisodeFavoriteUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -37,6 +38,8 @@ class ExploreEpisodesViewModel @Inject constructor(
         )
 
     fun setFavorite(episodeId: String, favorite: Boolean) {
-        setEpisodeFavorite(episodeId, favorite)
+        viewModelScope.launch {
+            setEpisodeFavorite(episodeId, favorite)
+        }
     }
 }

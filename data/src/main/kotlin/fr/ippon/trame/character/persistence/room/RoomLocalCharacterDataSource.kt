@@ -10,8 +10,7 @@ import kotlin.coroutines.CoroutineContext
 class RoomLocalCharacterDataSource @Inject constructor(
     private val dao: CharacterDao,
     @LocalDataSourceCoroutineContext private val coroutineContext: CoroutineContext
-) :
-    LocalCharacterDataSource {
+) : LocalCharacterDataSource {
 
     override fun getAll(): Flow<List<CharacterEntity>> {
         return dao.readAllAsFlow()

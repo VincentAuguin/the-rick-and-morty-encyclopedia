@@ -8,6 +8,10 @@ import fr.ippon.trame.character.network.RemoteCharacterDataSource
 import fr.ippon.trame.character.network.rest.RestRemoteCharacterDataSource
 import fr.ippon.trame.character.persistence.LocalCharacterDataSource
 import fr.ippon.trame.character.persistence.room.RoomLocalCharacterDataSource
+import fr.ippon.trame.episode.network.RemoteEpisodeDataSource
+import fr.ippon.trame.episode.network.rest.RestRemoteEpisodeDataSource
+import fr.ippon.trame.episode.persistence.LocalEpisodeDataSource
+import fr.ippon.trame.episode.persistence.room.RoomLocalEpisodeDataSource
 import fr.ippon.trame.shared.RestDataSource
 import fr.ippon.trame.shared.RoomDataSource
 
@@ -22,4 +26,12 @@ interface DataSourcesModule {
     @Binds
     @RoomDataSource
     fun bindLocalCharacterDataSource(impl: RoomLocalCharacterDataSource): LocalCharacterDataSource
+
+    @Binds
+    @RestDataSource
+    fun bindRemoteEpisodeDataSource(impl: RestRemoteEpisodeDataSource): RemoteEpisodeDataSource
+
+    @Binds
+    @RoomDataSource
+    fun bindLocalEpisodeDataSource(impl: RoomLocalEpisodeDataSource): LocalEpisodeDataSource
 }

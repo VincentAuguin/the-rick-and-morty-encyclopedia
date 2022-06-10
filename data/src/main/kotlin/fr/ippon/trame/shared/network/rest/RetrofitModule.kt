@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import fr.ippon.trame.BuildConfig
 import fr.ippon.trame.character.network.rest.CharacterApiService
+import fr.ippon.trame.episode.network.rest.EpisodeApiService
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
@@ -30,4 +31,8 @@ object RetrofitModule {
     @Provides
     fun provideCharacterApiService(retrofit: Retrofit): CharacterApiService =
         retrofit.create(CharacterApiService::class.java)
+
+    @Provides
+    fun provideEpisodeApiService(retrofit: Retrofit): EpisodeApiService =
+        retrofit.create(EpisodeApiService::class.java)
 }
