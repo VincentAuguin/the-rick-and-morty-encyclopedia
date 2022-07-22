@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: './dependencies.gradle'
+
+android {
+    compileSdk project.ext.compile_sdk
+
+    defaultConfig {
+        applicationId "com.deezer.rickandmorty"
+        minSdk project.ext.min_sdk
+        targetSdk project.ext.target_sdk
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation appDependencies['androidx-core']
+    implementation appDependencies['android-material']
+    implementation appDependencies['androidx-compose-ui']
+    implementation appDependencies['androidx-compose-material']
+    implementation appDependencies['androidx-lifecycle']
+    implementation appDependencies['androidx-activity-compose']
+    implementation appDependencies['androidx-navigation-compose']
+    implementation appDependencies['hilt-android']
+    kapt appDependencies['hilt-compiler']
+    implementation appDebugDependencies['androidx-compose-ui-preview']
+    implementation appDebugDependencies['androidx-compose-ui-tooling']
+
+    testImplementation appTestDependencies['coroutines-test']
+    testImplementation appTestDependencies['junit']
+    androidTestImplementation appTestDependencies['androix-test-junit']
+    androidTestImplementation appTestDependencies['androix-test-espresso']
+    androidTestImplementation appTestDependencies['androix-test-compose-ui']
+    
+    debugImplementation appDebugDependencies['androidx-compose-ui-preview']
+    debugImplementation appDebugDependencies['androidx-compose-ui-tooling']
+}

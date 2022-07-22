@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: './dependencies.gradle'
+
+android {
+    compileSdk project.ext.compile_sdk
+
+    defaultConfig {
+        minSdk project.ext.min_sdk
+        targetSdk project.ext.target_sdk
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+
+    implementation dataDependencies['javax-inject']
+    implementation dataDependencies['kotlinx-coroutines']
+    implementation dataDependencies['hilt-android']
+    kapt dataDependencies['hilt-compiler']
+
+    testImplementation dataTestDependencies['coroutines-test']
+    testImplementation dataTestDependencies['junit']
+    testImplementation dataTestDependencies['mockk']
+}
